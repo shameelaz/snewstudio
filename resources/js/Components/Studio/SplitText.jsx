@@ -58,3 +58,23 @@ export default function SplitText({ text, variants, className = '', colorAt, lif
         </motion.span>
     );
 }
+
+const accentGradient = blendColors([165, 148, 255], [110, 231, 216]);
+
+/**
+ * Two-line page heading: a plain `lead` line, then an `accent` line in the
+ * accent gradient that starts once most of the lead has landed. Place inside
+ * a heading that carries the full text as its aria-label.
+ */
+export function SplitHeading({ lead, accent }) {
+    const leadLetters = lead.replace(/ /g, '').length;
+
+    return (
+        <>
+            <SplitText text={lead} variants={splitLine(0.1, 0.03)} className="block" />
+            {accent && (
+                <SplitText text={accent} variants={splitLine(0.15 + leadLetters * 0.018, 0.035)} colorAt={accentGradient} className="block" />
+            )}
+        </>
+    );
+}

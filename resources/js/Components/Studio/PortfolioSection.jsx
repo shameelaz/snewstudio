@@ -2,12 +2,8 @@ import { useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { BadgeCheck, GraduationCap } from 'lucide-react';
 import SectionShell from '@/Components/Studio/SectionShell';
-import SplitText, { blendColors, splitLine } from '@/Components/Studio/SplitText';
 import { career, certifications, education, profile, toolbelt } from '@/data/portfolio';
 import { revealOnScroll, useRise } from '@/lib/motion';
-
-// Accent → accent-2, matching the gradient used on other headings.
-const roleGradient = blendColors([165, 148, 255], [110, 231, 216]);
 
 const chapters = [
     { id: 'about', label: 'About' },
@@ -87,13 +83,8 @@ export default function PortfolioSection() {
     return (
         <SectionShell
             sectionKey="portfolio"
-            titleLabel={`Hi, I'm ${profile.name}. ${profile.role}.`}
-            title={
-                <>
-                    <SplitText text={`Hi, I'm ${profile.name}.`} variants={splitLine(0.1, 0.025)} className="block" />
-                    <SplitText text={`${profile.role}.`} variants={splitLine(0.45, 0.03)} colorAt={roleGradient} className="block" />
-                </>
-            }
+            title={`Hi, I'm ${profile.name}.`}
+            accent={`${profile.role}.`}
             intro={profile.intro}
         >
             <motion.nav aria-label="Portfolio chapters" {...revealOnScroll(rise)} className="-mt-4 mb-16 flex flex-wrap gap-2 sm:mb-20">

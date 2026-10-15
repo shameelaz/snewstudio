@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Lightbulb, MessageCircle, MessagesSquare } from 'lucide-react';
 import FormField, { fieldLabel } from '@/Components/Studio/FormField';
 import FormSuccess from '@/Components/Studio/FormSuccess';
-import GradientText from '@/Components/Studio/GradientText';
 import PillButton from '@/Components/Studio/PillButton';
 import SectionShell from '@/Components/Studio/SectionShell';
 import { revealOnScroll, useRise } from '@/lib/motion';
@@ -51,11 +50,8 @@ export default function FeedbackSection() {
     return (
         <SectionShell
             sectionKey="feedback"
-            title={
-                <>
-                    Your thoughts <GradientText>shape what's next.</GradientText>
-                </>
-            }
+            title="Your thoughts"
+            accent="shape what's next."
             intro="Spotted something worth improving, or enjoyed something in particular? Leave a comment, suggestion or general feedback below."
         >
             <motion.div {...revealOnScroll(rise)} className="mx-auto max-w-3xl rounded-3xl border border-white/[0.08] bg-ink-raised/70 p-5 sm:p-8">

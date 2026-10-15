@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { SplitHeading } from '@/Components/Studio/SplitText';
 import StudioLink from '@/Components/Studio/StudioLink';
 import { nextSection, sections } from '@/data/sections';
 import { fadeUp, revealOnScroll, stagger, useRise } from '@/lib/motion';
@@ -7,7 +8,7 @@ import { fadeUp, revealOnScroll, stagger, useRise } from '@/lib/motion';
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink';
 
 /** Shared frame for section pages: numbered intro, content, and onward navigation. */
-export default function SectionShell({ sectionKey, title, titleLabel, intro, children }) {
+export default function SectionShell({ sectionKey, title, accent, intro, children }) {
     const rise = useRise();
     const index = sections.findIndex((section) => section.key === sectionKey);
     const section = sections[index];
@@ -22,11 +23,11 @@ export default function SectionShell({ sectionKey, title, titleLabel, intro, chi
                     {section.title}
                 </motion.p>
                 <motion.h1
-                    variants={titleLabel ? stagger(0) : fadeUp(rise)}
-                    aria-label={titleLabel}
+                    variants={stagger(0)}
+                    aria-label={accent ? `${title} ${accent}` : title}
                     className="font-display text-[clamp(2.25rem,6vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-snow"
                 >
-                    {title}
+                    <SplitHeading lead={title} accent={accent} />
                 </motion.h1>
                 {intro && (
                     <motion.p variants={fadeUp(rise)} className="mt-6 max-w-2xl text-base leading-relaxed text-fog sm:text-lg">

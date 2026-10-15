@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Check } from 'lucide-react';
-import GradientText from '@/Components/Studio/GradientText';
 import PillButton from '@/Components/Studio/PillButton';
 import SectionShell from '@/Components/Studio/SectionShell';
 import StudioLink from '@/Components/Studio/StudioLink';
@@ -95,17 +94,8 @@ export default function PricingSection() {
     return (
         <SectionShell
             sectionKey="pricing"
-            title={
-                hasPlans ? (
-                    <>
-                        Pick the package <GradientText>that fits.</GradientText>
-                    </>
-                ) : (
-                    <>
-                        Packages are <GradientText>in the works.</GradientText>
-                    </>
-                )
-            }
+            title={hasPlans ? 'Pick the package' : 'Packages are'}
+            accent={hasPlans ? 'that fits.' : 'in the works.'}
             intro={hasPlans ? pricingIntro : 'Service packages and pricing are being finalised and will be published here soon.'}
         >
             {hasPlans ? (

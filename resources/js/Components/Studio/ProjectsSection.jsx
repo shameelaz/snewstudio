@@ -1,11 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import SectionShell from '@/Components/Studio/SectionShell';
-import SplitText, { blendColors, splitLine } from '@/Components/Studio/SplitText';
 import { projects } from '@/data/portfolio';
 import { revealOnScroll, useRise } from '@/lib/motion';
-
-const accentGradient = blendColors([165, 148, 255], [110, 231, 216]);
 
 const card = 'rounded-3xl border border-white/[0.08] bg-ink-raised/70 transition-colors duration-500 hover:border-white/15';
 
@@ -62,13 +59,8 @@ export default function ProjectsSection() {
     return (
         <SectionShell
             sectionKey="projects"
-            titleLabel="Work I've built and delivered."
-            title={
-                <>
-                    <SplitText text="Work I've built" variants={splitLine(0.1, 0.03)} className="block" />
-                    <SplitText text="and delivered." variants={splitLine(0.5, 0.035)} colorAt={accentGradient} className="block" />
-                </>
-            }
+            title="Work I've built"
+            accent="and delivered."
             intro={`A selection of ${projects.length} projects delivered over the years, from government portals to payment and GIS platforms.`}
         >
             <div className="grid gap-4 md:grid-cols-2">

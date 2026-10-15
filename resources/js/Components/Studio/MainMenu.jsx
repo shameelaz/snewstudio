@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import GradientText from '@/Components/Studio/GradientText';
+import { SplitHeading } from '@/Components/Studio/SplitText';
 import StudioLink from '@/Components/Studio/StudioLink';
 import { menuSections } from '@/data/sections';
 import { fadeUp, stagger, useRise } from '@/lib/motion';
@@ -95,10 +95,11 @@ export default function MainMenu() {
                 </motion.p>
                 <motion.h1
                     id="menu-title"
-                    variants={fadeUp(rise)}
+                    variants={stagger(0)}
+                    aria-label="Where would you like to go next?"
                     className="font-display text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-snow"
                 >
-                    Where would you like <GradientText>to go next?</GradientText>
+                    <SplitHeading lead="Where would you like" accent="to go next?" />
                 </motion.h1>
                 <motion.p variants={fadeUp(rise)} className="mt-5 max-w-xl text-base leading-relaxed text-fog sm:text-lg">
                     Get to know me, browse my projects, or start a conversation.

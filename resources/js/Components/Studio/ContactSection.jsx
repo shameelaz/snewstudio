@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Calendar, Lightbulb, Link2, MessageCircle } from 'lucide-react';
 import FormField from '@/Components/Studio/FormField';
 import FormSuccess from '@/Components/Studio/FormSuccess';
-import GradientText from '@/Components/Studio/GradientText';
 import PillButton from '@/Components/Studio/PillButton';
 import SectionShell from '@/Components/Studio/SectionShell';
 import { revealOnScroll, useRise } from '@/lib/motion';
@@ -96,11 +95,8 @@ export default function ContactSection() {
     return (
         <SectionShell
             sectionKey="contact"
-            title={
-                <>
-                    Let's build something <GradientText>with purpose.</GradientText>
-                </>
-            }
+            title="Let's build something"
+            accent="with purpose."
             intro="Whether it's a project, a role or just an idea worth exploring, send a message on WhatsApp and let's talk it through."
         >
             <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
