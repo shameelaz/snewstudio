@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { LayoutGrid, Sparkles } from 'lucide-react';
 import StudioLink from '@/Components/Studio/StudioLink';
-import { sections } from '@/data/sections';
+import { menuSections, sections } from '@/data/sections';
 import { easeOutExpo } from '@/lib/motion';
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink';
@@ -38,7 +38,7 @@ export default function StudioHeader({ path }) {
 
                 {active && (
                     <nav aria-label="Sections" className="flex items-center gap-1 rounded-full border border-white/10 bg-ink/60 p-1">
-                        {sections.map((section) => {
+                        {menuSections.map((section) => {
                             const isActive = section.key === active.key;
                             const Icon = section.icon;
 

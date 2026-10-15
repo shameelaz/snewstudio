@@ -17,6 +17,7 @@ class StudioTest extends TestCase
             'welcome' => ['/', 'Studio/Welcome'],
             'menu' => ['/menu', 'Studio/Menu'],
             'portfolio' => ['/portfolio', 'Studio/Portfolio'],
+            'projects' => ['/projects', 'Studio/Projects'],
             'contact' => ['/contact', 'Studio/Contact'],
             'pricing' => ['/pricing', 'Studio/Pricing'],
             'feedback' => ['/feedback', 'Studio/Feedback'],
@@ -33,7 +34,7 @@ class StudioTest extends TestCase
 
     public function test_previous_pages_redirect_to_portfolio_chapters(): void
     {
-        $this->get('/projects')->assertRedirect('/portfolio#work');
+        $this->get('/about')->assertRedirect('/portfolio#about');
         $this->get('/career')->assertRedirect('/portfolio#experience');
         $this->get('/education')->assertRedirect('/portfolio#credentials');
     }

@@ -8,6 +8,7 @@ use Inertia\Inertia;
 Route::inertia('/', 'Studio/Welcome')->name('home');
 Route::inertia('/menu', 'Studio/Menu')->name('menu');
 Route::inertia('/portfolio', 'Studio/Portfolio')->name('portfolio');
+Route::inertia('/projects', 'Studio/Projects')->name('projects');
 Route::inertia('/contact', 'Studio/Contact')->name('contact');
 Route::inertia('/pricing', 'Studio/Pricing')->name('pricing');
 Route::inertia('/feedback', 'Studio/Feedback')->name('feedback');
@@ -16,7 +17,6 @@ Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.s
 
 // The previous single-topic pages now live as chapters of the portfolio.
 Route::redirect('/about', '/portfolio#about');
-Route::redirect('/projects', '/portfolio#work');
 Route::redirect('/career', '/portfolio#experience');
 Route::redirect('/certifications', '/portfolio#credentials');
 Route::redirect('/education', '/portfolio#credentials');

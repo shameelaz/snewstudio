@@ -43,7 +43,7 @@ export const plans = [
     {
         name: 'E-Commerce',
         prefix: 'From',
-        price: 'RM4000',
+        price: 'RM4200',
         features: [
             'WooCommerce / Shopify',
             'Full store setup & checkout',

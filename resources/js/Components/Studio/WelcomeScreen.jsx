@@ -1,22 +1,12 @@
-import { Fragment } from 'react';
 import { motion } from 'framer-motion';
 import PillButton from '@/Components/Studio/PillButton';
+import SplitText, { blendColors, splitLine } from '@/Components/Studio/SplitText';
 import { easeIn, easeOutExpo, useRise } from '@/lib/motion';
 
 const root = {
     hidden: {},
     show: {},
     exit: { opacity: 0, scale: 0.96, transition: { duration: 0.35, ease: easeIn } },
-};
-
-const line = (delayChildren, staggerChildren) => ({
-    hidden: {},
-    show: { transition: { delayChildren, staggerChildren } },
-});
-
-const letter = {
-    hidden: { opacity: 0, y: '0.5em' },
-    show: { opacity: 1, y: '0em', transition: { duration: 0.9, ease: easeOutExpo } },
 };
 
 const appear = (delay, rise) => ({
@@ -30,45 +20,7 @@ const rule = {
 };
 
 // Letters fade from near-white into the accent across the word.
-const from = [244, 244, 246];
-const to = [183, 170, 255];
-const tint = (i, total) => {
-    const t = Math.max(0, (i - 2) / (total - 3));
-
-    return `rgb(${from.map((c, k) => Math.round(c + (to[k] - c) * t)).join(' ')})`;
-};
-
-function SplitText({ text, variants, className, colored = false, hoverLift = false }) {
-    const letters = text.replace(/ /g, '').length;
-    let index = 0;
-
-    return (
-        <motion.span aria-hidden="true" variants={variants} className={className}>
-            {text.split(' ').map((word, w) => (
-                <Fragment key={w}>
-                    {w > 0 && ' '}
-                    <span className="inline-block whitespace-nowrap">
-                        {[...word].map((char) => {
-                            const i = index++;
-
-                            return (
-                                <motion.span
-                                    key={i}
-                                    variants={letter}
-                                    whileHover={hoverLift ? { y: '-0.08em', transition: { type: 'spring', stiffness: 400, damping: 15 } } : undefined}
-                                    className="inline-block"
-                                    style={colored ? { color: tint(i, letters) } : undefined}
-                                >
-                                    {char}
-                                </motion.span>
-                            );
-                        })}
-                    </span>
-                </Fragment>
-            ))}
-        </motion.span>
-    );
-}
+const tint = blendColors([244, 244, 246], [183, 170, 255], 2);
 
 export default function WelcomeScreen() {
     const rise = useRise(20);
@@ -92,16 +44,16 @@ export default function WelcomeScreen() {
                         <motion.span variants={rule} style={{ originX: 1 }} className="h-px w-8 bg-linear-to-l from-white/40 to-transparent sm:w-16" />
                         <SplitText
                             text="WELCOME TO"
-                            variants={line(0.15, 0.03)}
+                            variants={splitLine(0.15, 0.03)}
+                            lift={false}
                             className="-mr-[0.45em] block text-[clamp(0.8rem,2.2vw,1.4rem)] font-medium tracking-[0.45em] text-fog"
                         />
                         <motion.span variants={rule} style={{ originX: 0 }} className="h-px w-8 bg-linear-to-r from-white/40 to-transparent sm:w-16" />
                     </span>
                     <SplitText
                         text="SNEWSTUDIO"
-                        variants={line(0.4, 0.045)}
-                        colored
-                        hoverLift
+                        variants={splitLine(0.4, 0.045)}
+                        colorAt={tint}
                         className="mt-3 block text-[clamp(2.6rem,12.5vw,10.5rem)] font-bold leading-[0.95] tracking-[-0.045em] sm:mt-5"
                     />
                 </h1>

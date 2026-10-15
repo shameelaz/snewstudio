@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, BadgeCheck, GraduationCap } from 'lucide-react';
-import GradientText from '@/Components/Studio/GradientText';
+import { BadgeCheck, GraduationCap } from 'lucide-react';
 import SectionShell from '@/Components/Studio/SectionShell';
-import { career, certifications, education, profile, projects, toolbelt } from '@/data/portfolio';
+import SplitText, { blendColors, splitLine } from '@/Components/Studio/SplitText';
+import { career, certifications, education, profile, toolbelt } from '@/data/portfolio';
 import { revealOnScroll, useRise } from '@/lib/motion';
+
+// Accent → accent-2, matching the gradient used on other headings.
+const roleGradient = blendColors([165, 148, 255], [110, 231, 216]);
 
 const chapters = [
     { id: 'about', label: 'About' },
-    { id: 'work', label: 'Work' },
     { id: 'stack', label: 'Stack' },
     { id: 'experience', label: 'Experience' },
     { id: 'credentials', label: 'Credentials' },
@@ -39,57 +41,6 @@ function Chapter({ id, index, title, aside, children }) {
     );
 }
 
-function Tag({ children }) {
-    return (
-        <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-fog">{children}</span>
-    );
-}
-
-function ProjectCard({ project, featured, wide, delay }) {
-    const rise = useRise(32);
-
-    return (
-        <motion.article
-            {...revealOnScroll(rise, delay)}
-            className={`group flex flex-col p-6 sm:p-8 ${card} ${featured || wide ? 'md:col-span-2' : ''}`}
-        >
-            <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-xs uppercase tracking-[0.15em] text-fog">
-                <span>{project.date}</span>
-                <span className="normal-case tracking-normal">{project.company}</span>
-            </div>
-            <h3
-                className={`mt-5 font-display font-semibold tracking-tight text-snow transition-colors duration-500 group-hover:text-accent ${featured ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-2xl'}`}
-            >
-                {project.title}
-            </h3>
-            <p className={`mt-4 leading-relaxed text-fog ${featured ? 'max-w-3xl sm:text-lg' : ''}`}>{project.description}</p>
-            <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-6">
-                <div className="flex flex-wrap gap-2">
-                    {project.stack.map((item) => (
-                        <Tag key={item}>{item}</Tag>
-                    ))}
-                </div>
-                {project.links?.length > 0 && (
-                    <div className="flex flex-wrap gap-4">
-                        {project.links.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group/link inline-flex items-center gap-1 rounded text-sm font-medium text-snow hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                            >
-                                {link.label}
-                                <ArrowUpRight aria-hidden="true" className="size-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-                            </a>
-                        ))}
-                    </div>
-                )}
-            </div>
-        </motion.article>
-    );
-}
-
 function CredentialList({ title, icon: Icon, items }) {
     const rise = useRise();
 
@@ -117,7 +68,7 @@ export default function PortfolioSection() {
     const rise = useRise();
     const reduceMotion = useReducedMotion();
 
-    // Honour deep links such as /portfolio#work once the page has transitioned in.
+    // Honour deep links such as /portfolio#experience once the page has transitioned in.
     useEffect(() => {
         const id = window.location.hash.slice(1);
         if (!id) return;
@@ -136,9 +87,11 @@ export default function PortfolioSection() {
     return (
         <SectionShell
             sectionKey="portfolio"
+            titleLabel={`Hi, I'm ${profile.name}. ${profile.role}.`}
             title={
                 <>
-                    Hi, I'm {profile.name}. <GradientText>{profile.role}.</GradientText>
+                    <SplitText text={`Hi, I'm ${profile.name}.`} variants={splitLine(0.1, 0.025)} className="block" />
+                    <SplitText text={`${profile.role}.`} variants={splitLine(0.45, 0.03)} colorAt={roleGradient} className="block" />
                 </>
             }
             intro={profile.intro}
@@ -164,21 +117,7 @@ export default function PortfolioSection() {
                 </motion.div>
             </Chapter>
 
-            <Chapter id="work" index={2} title="Selected work" aside={`${String(projects.length).padStart(2, '0')} projects`}>
-                <div className="grid gap-4 md:grid-cols-2">
-                    {projects.map((project, i) => (
-                        <ProjectCard
-                            key={project.title}
-                            project={project}
-                            featured={i === 0}
-                            wide={i === projects.length - 1 && i % 2 === 1}
-                            delay={i === 0 ? 0 : ((i - 1) % 2) * 0.1}
-                        />
-                    ))}
-                </div>
-            </Chapter>
-
-            <Chapter id="stack" index={3} title="Toolbelt">
+            <Chapter id="stack" index={2} title="Toolbelt">
                 <div className="grid gap-4 md:grid-cols-3">
                     {toolbelt.map((group, i) => (
                         <motion.div
@@ -202,7 +141,7 @@ export default function PortfolioSection() {
                 </div>
             </Chapter>
 
-            <Chapter id="experience" index={4} title="Experience">
+            <Chapter id="experience" index={3} title="Experience">
                 <ol className="relative space-y-4">
                     {career.map((job) => (
                         <motion.li key={job.date} {...revealOnScroll(rise)} className={`grid gap-3 p-6 sm:p-8 md:grid-cols-[13rem_1fr] md:gap-10 ${card}`}>
@@ -217,7 +156,7 @@ export default function PortfolioSection() {
                 </ol>
             </Chapter>
 
-            <Chapter id="credentials" index={5} title="Credentials">
+            <Chapter id="credentials" index={4} title="Credentials">
                 <div className="grid gap-4 md:grid-cols-2">
                     <CredentialList title="Certifications" icon={BadgeCheck} items={certifications} />
                     <CredentialList title="Education" icon={GraduationCap} items={education} />

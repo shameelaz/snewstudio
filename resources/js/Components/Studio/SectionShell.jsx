@@ -7,7 +7,7 @@ import { fadeUp, revealOnScroll, stagger, useRise } from '@/lib/motion';
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink';
 
 /** Shared frame for section pages: numbered intro, content, and onward navigation. */
-export default function SectionShell({ sectionKey, title, intro, children }) {
+export default function SectionShell({ sectionKey, title, titleLabel, intro, children }) {
     const rise = useRise();
     const index = sections.findIndex((section) => section.key === sectionKey);
     const section = sections[index];
@@ -22,7 +22,8 @@ export default function SectionShell({ sectionKey, title, intro, children }) {
                     {section.title}
                 </motion.p>
                 <motion.h1
-                    variants={fadeUp(rise)}
+                    variants={titleLabel ? stagger(0) : fadeUp(rise)}
+                    aria-label={titleLabel}
                     className="font-display text-[clamp(2.25rem,6vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-snow"
                 >
                     {title}

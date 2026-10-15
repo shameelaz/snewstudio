@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import GradientText from '@/Components/Studio/GradientText';
 import StudioLink from '@/Components/Studio/StudioLink';
-import { sections } from '@/data/sections';
+import { menuSections } from '@/data/sections';
 import { fadeUp, stagger, useRise } from '@/lib/motion';
 
 const arrowKeys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
@@ -101,7 +101,7 @@ export default function MainMenu() {
                     Where would you like <GradientText>to go next?</GradientText>
                 </motion.h1>
                 <motion.p variants={fadeUp(rise)} className="mt-5 max-w-xl text-base leading-relaxed text-fog sm:text-lg">
-                    Explore selected work, start a conversation, or leave a note.
+                    Get to know me, browse my projects, or start a conversation.
                 </motion.p>
             </motion.div>
 
@@ -113,7 +113,7 @@ export default function MainMenu() {
                 animate="show"
                 className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"
             >
-                {sections.map((section, index) => (
+                {menuSections.map((section, index) => (
                     <MenuCard key={section.key} section={section} index={index} rise={rise} />
                 ))}
             </motion.ul>
