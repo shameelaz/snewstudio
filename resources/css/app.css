@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sidebar: #0f0f12;
+  --color-main: #141419;
+  --color-card: #1f2029;
+  --color-card-border: #343541;
+  --color-text-muted: #9ba1b0;
+  --color-text-heading: #ffffff;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Studio redesign */
+  --color-ink: #09090c;
+  --color-ink-raised: #111116;
+  --color-line: #23232c;
+  --color-fog: #a1a1ae;
+  --color-snow: #f4f4f6;
+  --color-accent: #a594ff;
+  --color-accent-2: #6ee7d8;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-main text-text-muted antialiased;
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: rgb(165 148 255 / 0.35);
+    color: var(--color-snow);
+  }
+}
+
+/* ---------- Studio: animated background ---------- */
+
+@keyframes studio-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.1); }
+}
+
+@keyframes studio-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-7%, -5%, 0) scale(0.95); }
+}
+
+@keyframes studio-float {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  15%, 85% { opacity: var(--o, 0.5); }
+  100% { transform: translate3d(var(--dx, 0px), -105vh, 0); opacity: 0; }
+}
+
+@keyframes studio-shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.studio-blob {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.studio-particle {
+  position: absolute;
+  bottom: -2vh;
+  border-radius: 9999px;
+  background: var(--color-snow);
+  animation: studio-float var(--t, 20s) linear var(--d, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.studio-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+}
+
+.studio-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.06), transparent);
+  animation: studio-shimmer 2.2s ease-in-out infinite;
+}
+
+/* ---------- Studio: interactive surfaces ---------- */
+
+/* 1px gradient outline drawn with a mask so the card interior stays transparent. */
+.studio-gradient-border {
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-accent), transparent 45%, transparent 60%, var(--color-accent-2));
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+/* Cursor-following glow; --mx / --my are set from pointer events without re-rendering. */
+.studio-spotlight {
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(165 148 255 / 0.12), transparent 45%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-blob,
+  .studio-shimmer::after {
+    animation: none !important;
+  }
+
+  .studio-particle {
+    display: none;
+  }
+}
