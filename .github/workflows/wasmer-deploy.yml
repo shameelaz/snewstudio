@@ -1,0 +1,42 @@
+name: Build for Wasmer
+
+# Every push to main builds the frontend here on GitHub, then publishes a
+# lean copy (no package.json) to the "wasmer-deploy" branch. Wasmer deploys
+# that branch, so its builder never runs npm and stays under the memory limit.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install and build frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Remove Node files Wasmer doesn't need
+        run: rm -rf node_modules package.json package-lock.json vite.config.js jsconfig.json .npmrc
+
+      - name: Push to wasmer-deploy branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B wasmer-deploy
+          git add -A
+          git add -f public/build
+          git commit -m "Deploy build from ${GITHUB_SHA::7}"
+          git push -f origin wasmer-deploy
