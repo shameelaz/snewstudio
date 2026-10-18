@@ -11,7 +11,7 @@ export const pricingIntro = 'Choose the package that fits your business needs. A
 export const plans = [
     {
         name: 'Landing Page',
-        price: 'RM1500 – RM1700',
+        price: 'RM1500 – RM2000',
         features: [
             '1-page premium landing design',
             'Optional payment gateway / OnPay (+RM200)',
