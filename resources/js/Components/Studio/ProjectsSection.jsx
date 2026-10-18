@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from '@/lib/icons';
 import SectionShell from '@/Components/Studio/SectionShell';
 import { projects } from '@/data/portfolio';
 import { revealOnScroll, useRise } from '@/lib/motion';

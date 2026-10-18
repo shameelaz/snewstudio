@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Lightbulb, MessageCircle, MessagesSquare } from 'lucide-react';
+import { Lightbulb, MessageCircle, MessagesSquare } from '@/lib/icons';
 import FormField, { fieldLabel } from '@/Components/Studio/FormField';
 import FormSuccess from '@/Components/Studio/FormSuccess';
 import PillButton from '@/Components/Studio/PillButton';

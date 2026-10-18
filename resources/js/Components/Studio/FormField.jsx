@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { CircleAlert } from 'lucide-react';
+import { CircleAlert } from '@/lib/icons';
 
 export const fieldLabel = 'mb-2 flex items-center justify-between text-xs font-medium uppercase tracking-[0.18em] text-fog';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, Calendar, Lightbulb, Link2, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Calendar, Lightbulb, Link2, MessageCircle } from '@/lib/icons';
 import FormField from '@/Components/Studio/FormField';
 import FormSuccess from '@/Components/Studio/FormSuccess';
 import PillButton from '@/Components/Studio/PillButton';

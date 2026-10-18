@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, LoaderCircle } from 'lucide-react';
+import { ArrowUpRight, LoaderCircle } from '@/lib/icons';
 import StudioLink from '@/Components/Studio/StudioLink';
 
 const MotionStudioLink = motion.create(StudioLink);

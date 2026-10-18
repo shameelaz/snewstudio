@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from '@/lib/icons';
 import { SplitHeading } from '@/Components/Studio/SplitText';
 import StudioLink from '@/Components/Studio/StudioLink';
 import { menuSections } from '@/data/sections';

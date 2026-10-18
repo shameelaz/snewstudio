@@ -1,4 +1,4 @@
-import { FolderKanban, Mail, MessageSquareHeart, Tag, UserRound } from 'lucide-react';
+import { FolderKanban, Mail, MessageSquareHeart, Tag, UserRound } from '@/lib/icons';
 
 /**
  * Every section page, in display order. Entries marked `hidden` keep a

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { LayoutGrid, Sparkles } from 'lucide-react';
+import { LayoutGrid, Sparkles } from '@/lib/icons';
 import StudioLink from '@/Components/Studio/StudioLink';
 import { menuSections, sections } from '@/data/sections';
 import { easeOutExpo } from '@/lib/motion';

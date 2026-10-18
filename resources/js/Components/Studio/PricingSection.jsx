@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight, Check } from '@/lib/icons';
 import PillButton from '@/Components/Studio/PillButton';
 import SectionShell from '@/Components/Studio/SectionShell';
 import StudioLink from '@/Components/Studio/StudioLink';

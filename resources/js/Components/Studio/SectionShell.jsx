@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from '@/lib/icons';
 import { SplitHeading } from '@/Components/Studio/SplitText';
 import StudioLink from '@/Components/Studio/StudioLink';
 import { nextSection, sections } from '@/data/sections';

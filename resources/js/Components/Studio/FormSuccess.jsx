@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { CircleCheck, RotateCcw } from 'lucide-react';
+import { CircleCheck, RotateCcw } from '@/lib/icons';
 import { easeOutExpo } from '@/lib/motion';
 
 /** Replaces a submitted form; focuses its heading so screen readers announce it. */

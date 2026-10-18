@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { BadgeCheck, GraduationCap } from 'lucide-react';
+import { BadgeCheck, GraduationCap } from '@/lib/icons';
 import SectionShell from '@/Components/Studio/SectionShell';
 import { career, certifications, education, profile, toolbelt } from '@/data/portfolio';
 import { revealOnScroll, useRise } from '@/lib/motion';
